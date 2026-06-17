@@ -1,5 +1,6 @@
 package com.example.clinic.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,7 @@ public class Appointment {
     private Long id;
     private LocalDate appointmentDate;
     @Enumerated(EnumType.STRING)
-    private String status;
+    private AppointmentStatus appointmentStatus;
 
     @ManyToOne
     @JoinColumn(name="patient_id")
