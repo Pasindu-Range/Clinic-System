@@ -1,7 +1,8 @@
 package com.example.clinic.service;
 
-import com.example.clinic.dto.DoctorCreateDto;
-import com.example.clinic.dto.DoctorResponseDto;
+import com.example.clinic.dto.doctordto.DoctorCreateDto;
+import com.example.clinic.dto.doctordto.DoctorDetailsDto;
+import com.example.clinic.dto.doctordto.DoctorResponseDto;
 import com.example.clinic.entity.Doctor;
 import com.example.clinic.mapper.DoctorMapper;
 import com.example.clinic.repository.DoctorRepository;
@@ -26,11 +27,11 @@ public class DoctorService {
         return DoctorMapper.toDtoList(doctors);
     }
 
-    public DoctorResponseDto getDoctorById(Long id){
+    public DoctorDetailsDto getDoctorById(Long id){
         Doctor doctor = doctorRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("doctor not found"));
 
-        return DoctorMapper.toDto(doctor);
+        return DoctorMapper.toDetailsDto(doctor);
     }
 
     public DoctorResponseDto createDoctor(DoctorCreateDto dto){

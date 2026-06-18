@@ -1,6 +1,5 @@
-package com.example.clinic.dto;
+package com.example.clinic.dto.patientdto;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorResponseDto {
+public class PatientSimpleDto {
     private Long id;
     private String name;
-    private String specialization;
 }

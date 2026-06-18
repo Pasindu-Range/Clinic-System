@@ -1,7 +1,8 @@
 package com.example.clinic.controller;
 
-import com.example.clinic.dto.DoctorCreateDto;
-import com.example.clinic.dto.DoctorResponseDto;
+import com.example.clinic.dto.doctordto.DoctorCreateDto;
+import com.example.clinic.dto.doctordto.DoctorDetailsDto;
+import com.example.clinic.dto.doctordto.DoctorResponseDto;
 import com.example.clinic.service.DoctorService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class DoctorController {
     }
 
     @GetMapping("api/v1/doctors/{id}")
-    public DoctorResponseDto getDoctorById(@PathVariable Long id){
+    public DoctorDetailsDto getDoctorById(@PathVariable Long id){
         return doctorService.getDoctorById(id);
     }
 

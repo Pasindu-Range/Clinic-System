@@ -1,7 +1,9 @@
 package com.example.clinic.mapper;
 
-import com.example.clinic.dto.DoctorCreateDto;
-import com.example.clinic.dto.DoctorResponseDto;
+import com.example.clinic.dto.doctordto.DoctorCreateDto;
+import com.example.clinic.dto.doctordto.DoctorDetailsDto;
+import com.example.clinic.dto.doctordto.DoctorResponseDto;
+import com.example.clinic.dto.patientdto.PatientSimpleDto;
 import com.example.clinic.entity.Doctor;
 
 import java.util.List;
@@ -27,5 +29,19 @@ public class DoctorMapper {
     public static void updateEntity(Doctor doctor, DoctorCreateDto dto){
         doctor.setName(dto.getName());
         doctor.setSpecialization(dto.getSpecialization());
+    }
+
+    public static DoctorDetailsDto toDetailsDto(Doctor doctor){
+        List<PatientSimpleDto> patients = doctor.getPatients().stream()
+                .map(t-> new PatientSimpleDto(t.getId(),t.getName())).toList();
+
+        DoctorDetailsDto dto = new DoctorDetailsDto();
+        dto.setId(doctor.getId());
+        dto.setName(doctor.getName());
+        dto.setSpecialization(doctor.getSpecialization());
+        dto.setPatients(patients);
+
+        return dto;
+
     }
 }
