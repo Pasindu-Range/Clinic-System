@@ -19,7 +19,7 @@ public class Patient {
     private Long id;
     private String name;
     private int age;
-    private Long phone;
+    private String phone;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id")
@@ -28,7 +28,4 @@ public class Patient {
     @OneToMany(mappedBy = "patient")
     private List<Appointment> appointments;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 }

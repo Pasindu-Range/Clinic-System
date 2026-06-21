@@ -46,5 +46,19 @@ public class PatientController {
         return patientService.getPatientsByDoctorId(id);
     }
 
+    @GetMapping("/api/v1/patients/sort")
+    public Page<PatientResponseDto> getPatients(
+            @RequestParam int page,
+            @RequestParam int size,
+            @RequestParam String sortBy,
+            @RequestParam(defaultValue = "asc") String direction
+    ){
+        return patientService.getPatients(page, size, sortBy, direction);
+    }
+
+    @GetMapping("/api/v1/patients/search")
+    public List<PatientResponseDto> getPatientsByName(@RequestParam String name){
+        return patientService.getPatientsByName(name);
+    }
 
 }

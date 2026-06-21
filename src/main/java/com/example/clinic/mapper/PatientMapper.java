@@ -10,7 +10,7 @@ import java.util.List;
 public class PatientMapper {
 
     public static PatientResponseDto toDto(Patient patient){
-        return PatientMapper.toDto(patient);
+        return new PatientResponseDto(patient.getId(), patient.getName(), patient.getAge(), patient.getPhone());
     }
 
     public static List<PatientResponseDto> toDtoList(List<Patient> patients){

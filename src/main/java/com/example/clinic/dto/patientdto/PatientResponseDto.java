@@ -13,5 +13,5 @@ public class PatientResponseDto {
     private Long id;
     private String name;
     private int age;
-    private Long phoneNumber;
+    private String phoneNumber;
 }

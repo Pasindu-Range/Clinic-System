@@ -47,7 +47,7 @@ public class DoctorController {
         return doctorService.getBySpecialization(specialization);
     }
 
-    @GetMapping("/api/v1/doctors")
+    @GetMapping("/api/v1/doctors/sort")
     public Page<DoctorResponseDto> getDoctors(
             @RequestParam int page,
             @RequestParam int size,

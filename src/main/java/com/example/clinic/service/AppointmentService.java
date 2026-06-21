@@ -10,6 +10,10 @@ import com.example.clinic.mapper.AppointmentMapper;
 import com.example.clinic.repository.AppointmentRepository;
 import com.example.clinic.repository.DoctorRepository;
 import com.example.clinic.repository.PatientRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -91,5 +95,16 @@ public class AppointmentService {
         existedAppointment.setAppointmentStatus(AppointmentStatus.COMPLETED);
         appointmentRepository.save(existedAppointment);
         return AppointmentMapper.toDto(existedAppointment);
+    }
+
+    public Page<AppointmentResponseDto> getAppointments(int size, int page, String sortBy, String sortDirection) {
+
+        Sort sort = sortDirection.equalsIgnoreCase("desc")
+                ?Sort.by(sortBy).descending()
+                : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page,size,sort);
+
+        return appointmentRepository.findAll(pageable).map(AppointmentMapper :: toDto);
     }
 }

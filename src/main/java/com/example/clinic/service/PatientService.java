@@ -40,8 +40,8 @@ public class PatientService {
     public PatientResponseDto createPatient(PatientCreateDto dto){
         Doctor doctor = doctorRepository.findById(dto.getDoctorId())
                 .orElseThrow(()->new RuntimeException("Doctor not found"));
-        Patient savedPatient = PatientMapper.toEntity(dto, doctor);
-        patientRepository.save(savedPatient);
+        Patient patient = PatientMapper.toEntity(dto, doctor);
+        Patient savedPatient = patientRepository.save(patient);
 
         return PatientMapper.toDto(savedPatient);
     }
@@ -80,7 +80,7 @@ public class PatientService {
     }
 
     public List<PatientResponseDto> getPatientsByName(String name){
-        List<Patient> Patients = patientRepository.findByNameIgnoreCase(name);
+        List<Patient> Patients = patientRepository.findByNameContainingIgnoreCase(name);
 
         if(Patients.isEmpty()){
             throw new RuntimeException("Patient not found");

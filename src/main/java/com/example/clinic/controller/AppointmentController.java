@@ -3,6 +3,7 @@ package com.example.clinic.controller;
 import com.example.clinic.dto.appointmentDto.AppointmentCreateDto;
 import com.example.clinic.dto.appointmentDto.AppointmentResponseDto;
 import com.example.clinic.service.AppointmentService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,5 +44,15 @@ public class AppointmentController {
     @PatchMapping("/api/v1/appointments/{id}/complete")
     public AppointmentResponseDto completeAppointment(@PathVariable Long id){
         return appointmentService.completeAppointment(id);
+    }
+
+    @GetMapping("/api/v1/appointments")
+    public Page<AppointmentResponseDto> getAppointments(
+            @RequestParam int size,
+            @RequestParam int page,
+            @RequestParam String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection
+    ){
+        return appointmentService.getAppointments(size, page, sortBy, sortDirection);
     }
 }

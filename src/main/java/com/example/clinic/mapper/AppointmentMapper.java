@@ -11,7 +11,8 @@ import java.util.List;
 
 public class AppointmentMapper {
     public static AppointmentResponseDto toDto(Appointment appointment) {
-        return AppointmentMapper.toDto(appointment);
+
+        return new AppointmentResponseDto(appointment.getId(), appointment.getDoctor().getName(), appointment.getPatient().getName(), appointment.getAppointmentDate(), appointment.getAppointmentStatus());
     }
 
     public static List<AppointmentResponseDto> toDtoList(List<Appointment> appointments) {
