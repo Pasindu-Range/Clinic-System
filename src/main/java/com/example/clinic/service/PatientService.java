@@ -89,5 +89,15 @@ public class PatientService {
                 .map(PatientMapper::toDto).toList();
     }
 
-    public List<PatientResponseDto> getPatientsByDoctorId(Long doctorId){}
+    public List<PatientResponseDto> getPatientsByDoctorId(Long doctorId){
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(()->new RuntimeException("Doctor not found"));
+        List<Patient> patients = patientRepository.findByDoctorId(doctorId);
+
+        if (patients.isEmpty()){
+            throw new RuntimeException("No Patient found the doctorId "+ doctorId);
+        }
+        return PatientMapper.toDtoList(patients);
+
+    }
 }

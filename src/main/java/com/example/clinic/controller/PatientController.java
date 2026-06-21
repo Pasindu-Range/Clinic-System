@@ -41,5 +41,10 @@ public class PatientController {
         return patientService.deletePatient(id);
     }
 
+    @GetMapping("/api/v1/doctors/{id}/patients")
+    public List<PatientResponseDto> getPatientsByDoctorId(@PathVariable Long id){
+        return patientService.getPatientsByDoctorId(id);
+    }
+
 
 }
